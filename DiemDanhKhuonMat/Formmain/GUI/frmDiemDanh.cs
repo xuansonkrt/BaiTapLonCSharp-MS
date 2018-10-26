@@ -147,7 +147,7 @@ namespace Formmain.GUI
                         if (gt.Equals("Nam"))
                             radNam.Checked = true;
                         else
-                            radNu.Checked = false;
+                            radNu.Checked = true;
                         update(id);
 
                     }

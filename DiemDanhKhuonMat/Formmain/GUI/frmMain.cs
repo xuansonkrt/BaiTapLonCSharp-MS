@@ -284,8 +284,8 @@ namespace Formmain
                         }
                         catch (Exception ex)
                         {
-                              MessageBox.Show(ex.Message);
-                           // MessageBox.Show("Sinh viên đã tồn tại!");
+                            //  MessageBox.Show(ex.Message);
+                              MessageBox.Show("Sinh viên đã tồn tại!");
                         }
                     }
                     
@@ -361,8 +361,8 @@ namespace Formmain
                         }
                         catch (Exception ex)
                         {
-                              MessageBox.Show(ex.Message);
-                          //  MessageBox.Show("Sinh viên đã tồn tại!");
+                          //    MessageBox.Show(ex.Message);
+                           MessageBox.Show("Sinh viên đã tồn tại!");
                         }
                     }
                     if (frm.DialogResult == DialogResult.Cancel)
@@ -484,13 +484,13 @@ namespace Formmain
                 da1.Fill(tb1);
                 if(tb1.Rows.Count>0)
                     sql = " select sv.MaSV N'Mã sinh viên',HoTen N'Họ tên', l.TenLop N'Lớp',NgaySinh N'Ngày sinh',GioiTinh N'Giới tính',r1.SoNgayNghi N'Số ngày nghỉ'"
-                           + " from SinhVien sv,Lop l, LopHocPhan lhp,SV_LHP r2,("
+                           + " from SinhVien sv,Lop l, LopHocPhan lhp,("
                                + " select MaSV, r.MaLop, sum(r.Nghi) as 'SoNgayNghi'"
                                + " from DH_SV_LHP r, LopHocPhan l"
                                + " where r.MaLop = l.MaLop and l.TenLop = N'" + TenLop + "'"
                               + "  group by MaSV, r.MaLop "
                            + " ) as r1 "
-                         + "   where r1.MaSV = sv.MaSV and sv.MaSV = r2.MaSV and r2.MaLop = lhp.MaLop and l.MaLop = sv.MaLop";
+                         + "   where r1.MaSV=sv.MaSV  and l.MaLop=sv.MaLop and lhp.MaLop=r1.MaLop";
                 else
                 {
                     fisrt = 1;
