@@ -650,28 +650,79 @@ namespace Formmain
 
             if (MessageBox.Show("Bạn có chắc chắn muốn xóa?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (theNode.Tag == "1" || theNode.Tag == "2")
+                /* if (theNode.Tag == "1" || theNode.Tag == "2")
+                 {
+                     string strLoai;
+                     if (theNode.Tag == "1")
+                         strLoai = "Lop";
+                     else
+                         strLoai = "LopHocPhan";
+                     string sql = "delete from " + strLoai + " where TenLop= N'" + theNode.Text + "'";
+
+                     connect.Open();
+                     SqlCommand cmd = new SqlCommand(sql, connect);
+                     try
+                     {
+                         cmd.ExecuteNonQuery();
+                         showTreeView();
+                         connect.Close();
+                     }
+                     catch (Exception ex)
+                     {
+                         MessageBox.Show(ex.Message);
+                     }
+
+                 }*/
+                if (theNode.Tag == "1")
                 {
-                    string strLoai;
-                    if (theNode.Tag == "1")
-                        strLoai = "Lop";
-                    else
-                        strLoai = "LopHocPhan";
-                    string sql = "delete from " + strLoai + " where TenLop= N'" + theNode.Text + "'";
+                    if (connect.State == ConnectionState.Closed)
+                        connect.Open();
+                    string sql = "select MaLop from Lop l where TenLop=N'" + theNode.Text.ToString() + "'";
+                    SqlDataAdapter da = new SqlDataAdapter(sql, connect);
+                    DataTable tb = new DataTable();
+                    da.Fill(tb);
+                    string str = " delete from DH_SV_LCN  where MaLop = '" + tb.Rows[0]["MaLop"] + "'";
+                    string str3 = " delete from Lop where MaLop = '" + tb.Rows[0]["MaLop"] + "'";
+                    string str2 = " delete from SinhVien where MaLop = '" + tb.Rows[0]["MaLop"] + "'";
+                    string str1 = " delete from DH_SV_LHP where MaLop = '" + tb.Rows[0]["MaLop"] + "'";
 
-                    connect.Open();
-                    SqlCommand cmd = new SqlCommand(sql, connect);
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-                        showTreeView();
-                        connect.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-
+                    SqlCommand command = new SqlCommand(str, connect);
+                    command.ExecuteNonQuery();
+                    SqlCommand command1 = new SqlCommand(str1, connect);
+                    command1.ExecuteNonQuery();
+                    SqlCommand command2 = new SqlCommand(str2, connect);
+                    command2.ExecuteNonQuery();
+                    SqlCommand command3 = new SqlCommand(str3, connect);
+                    command3.ExecuteNonQuery();
+                    showListSV();
+                    showTreeView();
+                    connect.Close();
+                }
+                else
+                {
+                    if (connect.State == ConnectionState.Closed)
+                        connect.Open();
+                    string sql = "select MaLop from LopHocPhan where TenLop=N'" + theNode.Text.ToString() + "'";
+                    SqlDataAdapter da = new SqlDataAdapter(sql, connect);
+                    DataTable tb = new DataTable();
+                    da.Fill(tb);
+                    // string str = " delete from DH_SV_LCN  where MaSV = " + dataGridView1.Tag;
+                    string str2 = " delete from DH_SV_LHP  where MaLop = '" + tb.Rows[0]["MaLop"] + "'";
+                    string str1 = " delete from SV_LHP  where MaLop = '" + tb.Rows[0]["MaLop"] + "'";
+                    string str3 = " delete from LopHocPhan where MaLop = '" + tb.Rows[0]["MaLop"] + "'";
+                    //  SqlCommand command = new SqlCommand(str, connect);
+                    // command.ExecuteNonQuery();
+                    // SqlCommand command1 = new SqlCommand(str1, connect);
+                    // command1.ExecuteNonQuery();
+                    SqlCommand command1 = new SqlCommand(str1, connect);
+                    command1.ExecuteNonQuery();
+                    SqlCommand command2 = new SqlCommand(str2, connect);
+                    command2.ExecuteNonQuery();
+                    SqlCommand command3 = new SqlCommand(str3, connect);
+                    command3.ExecuteNonQuery();
+                    showListSV();
+                    showTreeView();
+                    connect.Close();
                 }
             }
         }
