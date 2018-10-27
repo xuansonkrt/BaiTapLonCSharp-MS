@@ -524,13 +524,17 @@ namespace Formmain
                 }*/
                 if (Convert.ToInt32(row.Cells[5].Value) == 1)
                 {
-                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                    row.DefaultCellStyle.BackColor = Color.Green;
                 }
                 if (Convert.ToInt32(row.Cells[5].Value) == 2)
                 {
+                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                }
+                if (Convert.ToInt32(row.Cells[5].Value) == 3)
+                {
                     row.DefaultCellStyle.BackColor = Color.Orange;
                 }
-                if (Convert.ToInt32(row.Cells[5].Value) >= 3)
+                if (Convert.ToInt32(row.Cells[5].Value) > 3)
                 {
                     row.DefaultCellStyle.BackColor = Color.Red;
                 }
@@ -812,5 +816,86 @@ namespace Formmain
         {
             redoToolStripMenuItem_Click(sender, e);
         }
+
+        private void tsmLucDSCamThi_Click(object sender, EventArgs e)
+        {
+            TreeNode theNode = TvDanhSachLop.SelectedNode;           
+            if (theNode.Tag == "1")
+            {
+                dataGridView1.DataSource = getTable(theNode.Text, 1, false);
+            }
+            else
+            {
+                dataGridView1.DataSource = getTable(theNode.Text, 2, false);
+            }
+            color();
+        }
+
+        private void tsmLocDSThi_Click(object sender, EventArgs e)
+        {
+            TreeNode theNode = TvDanhSachLop.SelectedNode;
+            if (theNode.Tag == "1")
+            {
+                 dataGridView1.DataSource = getTable(theNode.Text, 1, true);
+            }
+            else
+            {
+                 dataGridView1.DataSource = getTable(theNode.Text, 2, true);
+            }
+            color();
+
+        }
+        private DataTable getTable (string TenLop, int tag, bool thi )
+        {
+            string sql;
+            string table1,table2,Compare;
+            
+            if (thi == true) 
+                Compare = "<="; //được thi
+            else
+                Compare = ">"; //cấm thi
+            if (tag == 1)
+            {
+                
+                sql = " select sv.MaSV N'Mã sinh viên',HoTen N'Họ tên', l.TenLop N'Lớp',NgaySinh N'Ngày sinh',GioiTinh N'Giới tính',r.Nghi N'Số ngày nghỉ'"
+                    + " from SinhVien sv, Lop l, ("
+                    + " select MaSV,r1.MaLop,sum(Nghi) as 'Nghi'"
+                    + " from DH_SV_LCN r1, Lop l where r1.MaLop = l.MaLop and l.TenLop = N'" + TenLop + "'"
+                    + " group by MaSV,r1.MaLop"
+                    + " having sum(Nghi)" + Compare + "3)  as r"
+                    + " where sv.MaSV=r.MaSV and l.MaLop=r.MaLop";
+            }
+            else
+            {
+                  sql = " select sv.MaSV N'Mã sinh viên',HoTen N'Họ tên', l.TenLop N'Lớp',NgaySinh N'Ngày sinh',GioiTinh N'Giới tính',r.Nghi N'Số ngày nghỉ'"
+                    + " from Lop l, SinhVien sv,  ("
+                    + " select MaSV,r1.MaLop,sum(Nghi) as 'Nghi'"
+                    + " from DH_SV_LHP r1, LopHocPhan l where r1.MaLop = l.MaLop and l.TenLop = N'" + TenLop + "'"
+                    + " group by MaSV,r1.MaLop"
+                    + " having sum(Nghi)" + Compare + "3)  as r"
+                    + " where l.MaLop=sv.MaLop and sv.MaSV=r.MaSV ";
+            }
+            
+            DataTable tb = new DataTable();
+            if (connect == null)
+            {
+                connect = cn.getConnect();
+                connect.Open();
+            }
+
+            SqlDataAdapter da = new SqlDataAdapter(sql,connect);
+            try
+            {
+                da.Fill(tb);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            connect.Close();
+            return tb;
+        }
+        
+       
     }
 }
