@@ -89,3 +89,4 @@ D:\GitHub\BaiTapLonCSharp\BaiTapLonCSharp-MS\DiemDanhKhuonMat\Formmain\obj\Debug
 D:\GitHub\BaiTapLonCSharp\BaiTapLonCSharp-MS\DiemDanhKhuonMat\Formmain\obj\Debug\Formmain.GUI.frmThemSinhVienLHP.resources
 D:\GitHub\BaiTapLonCSharp\BaiTapLonCSharp-MS\DiemDanhKhuonMat\Formmain\obj\Debug\Formmain.Properties.Resources.resources
 D:\GitHub\BaiTapLonCSharp\BaiTapLonCSharp-MS\DiemDanhKhuonMat\Formmain\obj\Debug\DiemDanh.csproj.GenerateResource.Cache
+D:\GitHub\BaiTapLonCSharp\BaiTapLonCSharp-MS\DiemDanhKhuonMat\Formmain\obj\Debug\Formmain.GUI.frmTimKiem.resources

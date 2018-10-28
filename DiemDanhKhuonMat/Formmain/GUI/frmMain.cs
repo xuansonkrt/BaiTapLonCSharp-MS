@@ -378,9 +378,8 @@ namespace Formmain
         }
 
         private void thoatToolStripMenuItem_Click(object sender, EventArgs e)
-        { //demo thôi
-            frmDemoImage frm = new frmDemoImage();
-            frm.ShowDialog();
+        {
+            this.Dispose();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -895,7 +894,112 @@ namespace Formmain
             connect.Close();
             return tb;
         }
+
+        private void mnuTK_MSV_Click(object sender, EventArgs e)
+        {
+            frmTimKiem frm = new frmTimKiem();
+            frm.Text = "Tìm kiếm Mã sinh viên";
+            frm.labelTimKiem.Text = "Mã sinh viên";
+            frm.ShowDialog();
+
+            string key = frm.getKey();
+            if (key == "")
+                return;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if ( key.Equals(Convert.ToString(row.Cells[0].Value).Trim())==true)
+                {
+                    clearColor();
+                    row.DefaultCellStyle.BackColor = Color.Cyan;
+                    //row.Selected = true;
+                    return;
+                }
+            }
+            MessageBox.Show("Không tìm thấy Mã sinh viên " + key,"Thông báo");
+        }
+
+        private void mnuTK_HoTen_Click(object sender, EventArgs e)
+        {
+            bool find = false;
+            frmTimKiem frm = new frmTimKiem();
+            frm.Text = "Tìm kiếm Họ tên";
+            frm.labelTimKiem.Text = "Họ tên";
+            frm.ShowDialog();
+            string key = frm.getKey();
+            if (key == "")
+                return;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (key.Equals(Convert.ToString(row.Cells[1].Value).Trim()) == true)
+                {
+                    clearColor();
+                    row.Selected = true;
+                }
+            }
+            if(!find)
+                MessageBox.Show("Không tìm thấy Họ tên " + key, "Thông báo");
+        }
+        private void mnuTK_Lop_Click(object sender, EventArgs e)
+        {
+            dataGridView1.MultiSelect = true;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            bool find = false;
+            frmTimKiem frm = new frmTimKiem();
+            frm.Text = "Tìm kiếm Lớp";
+            frm.labelTimKiem.Text = "Lớp";
+            frm.ShowDialog();
+            string key = frm.getKey();
+            if (key == "")
+                return;
+            clearColor();
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (key.Equals(Convert.ToString(row.Cells[2].Value).Trim()) == true)
+                {
+                    row.Selected = true;
+                    find = true;
+                }
+            }
+            if (!find)
+                MessageBox.Show("Không tìm thấy Lớp " + key, "Thông báo");
+        }
+        private void mnuTK_NgaySinh_Click(object sender, EventArgs e)
+        {
+            
+            dataGridView1.MultiSelect = true;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            bool find = false;
+            frmTimKiem frm = new frmTimKiem();
+            frm.Text = "Tìm kiếm Ngày sinh";
+            frm.labelTimKiem.Text = "Ngày sinh";
+            frm.ShowDialog();
+            string key = frm.getKey();
+            if (key == "")
+                return;
+            clearColor();
+            DateTime date = Convert.ToDateTime(key).Date;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                
+                if (date.CompareTo(row.Cells[3].Value)==0)
+                {
+                    row.Selected = true;
+                    find = true;
+                }
+            }
+            if (!find)
+                MessageBox.Show("Không tìm thấy Ngày sinh " + key, "Thông báo");
+        }
+
         
-       
+        private void clearColor()
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                row.DefaultCellStyle.BackColor = Color.White;
+            }
+        }
+
     }
 }
