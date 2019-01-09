@@ -34,7 +34,7 @@ namespace Formmain.GUI
                 txtSHoTen.Text = tb.Rows[0]["HoTen"].ToString();
                 //  txtsNgaySinh.Text = tb.Rows[0]["NgaySinh"].ToString();
                 DateTime date = Convert.ToDateTime(tb.Rows[0]["NgaySinh"].ToString()).Date;
-                txtsNgaySinh.Text = date.ToString("d/M/yyyy");
+                txtsNgaySinh.Text = date.ToString("dd/MM/yyyy");
                 txtLop.Text= tb.Rows[0]["MaLop"].ToString();
                 if (tb.Rows[0]["GioiTinh"].ToString().Equals("Nam") == true)
                 {

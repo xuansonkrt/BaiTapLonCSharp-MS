@@ -62,9 +62,9 @@ namespace Formmain.GUI
                     DataTable tb1 = new DataTable();
                     da1.Fill(tb1);
                     txtLop.Text = tb1.Rows[0]["TenLop"].ToString();
-                    DateTime date = Convert.ToDateTime(tb.Rows[0]["NgaySinh"].ToString(), new CultureInfo("vi-VN")).Date;
+                    DateTime date = Convert.ToDateTime(tb.Rows[0]["NgaySinh"].ToString(), new CultureInfo("en-US")).Date;
 
-                    txtNgaySinh.Text = date.ToString("d/M/yyyy");
+                    txtNgaySinh.Text = date.ToString("dd/MM/yyyy");
                     string gt = tb.Rows[0]["GioiTinh"].ToString();
                     if (gt.Equals("Nam") == true)
                         radNam.Checked = true;

@@ -47,14 +47,14 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radNu = new System.Windows.Forms.RadioButton();
+            this.radNam = new System.Windows.Forms.RadioButton();
+            this.txtLop = new System.Windows.Forms.TextBox();
+            this.txtNgaySinh = new System.Windows.Forms.TextBox();
             this.btnMoFile = new System.Windows.Forms.Button();
             this.imgTrain = new Emgu.CV.UI.ImageBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ofdMoFile = new System.Windows.Forms.OpenFileDialog();
-            this.txtNgaySinh = new System.Windows.Forms.TextBox();
-            this.txtLop = new System.Windows.Forms.TextBox();
-            this.radNam = new System.Windows.Forms.RadioButton();
-            this.radNu = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.imgCamera)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTrain)).BeginInit();
@@ -88,7 +88,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 17);
             this.label1.TabIndex = 11;
-            this.label1.Text = "(dd/mm/yyyy)";
+            this.label1.Text = "(dd/MM/yyyy)";
             // 
             // txtHoTen
             // 
@@ -239,6 +239,42 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin sinh viên";
             // 
+            // radNu
+            // 
+            this.radNu.AutoSize = true;
+            this.radNu.Location = new System.Drawing.Point(251, 342);
+            this.radNu.Name = "radNu";
+            this.radNu.Size = new System.Drawing.Size(47, 21);
+            this.radNu.TabIndex = 15;
+            this.radNu.TabStop = true;
+            this.radNu.Text = "Nữ";
+            this.radNu.UseVisualStyleBackColor = true;
+            // 
+            // radNam
+            // 
+            this.radNam.AutoSize = true;
+            this.radNam.Location = new System.Drawing.Point(173, 342);
+            this.radNam.Name = "radNam";
+            this.radNam.Size = new System.Drawing.Size(58, 21);
+            this.radNam.TabIndex = 14;
+            this.radNam.TabStop = true;
+            this.radNam.Text = "Nam";
+            this.radNam.UseVisualStyleBackColor = true;
+            // 
+            // txtLop
+            // 
+            this.txtLop.Location = new System.Drawing.Point(173, 224);
+            this.txtLop.Name = "txtLop";
+            this.txtLop.Size = new System.Drawing.Size(292, 22);
+            this.txtLop.TabIndex = 13;
+            // 
+            // txtNgaySinh
+            // 
+            this.txtNgaySinh.Location = new System.Drawing.Point(173, 285);
+            this.txtNgaySinh.Name = "txtNgaySinh";
+            this.txtNgaySinh.Size = new System.Drawing.Size(136, 22);
+            this.txtNgaySinh.TabIndex = 12;
+            // 
             // btnMoFile
             // 
             this.btnMoFile.Location = new System.Drawing.Point(405, 544);
@@ -284,42 +320,6 @@
             // 
             this.ofdMoFile.FileName = "openFileDialog1";
             this.ofdMoFile.Filter = "File JPG (*.JPG)|*.JPG";
-            // 
-            // txtNgaySinh
-            // 
-            this.txtNgaySinh.Location = new System.Drawing.Point(173, 285);
-            this.txtNgaySinh.Name = "txtNgaySinh";
-            this.txtNgaySinh.Size = new System.Drawing.Size(136, 22);
-            this.txtNgaySinh.TabIndex = 12;
-            // 
-            // txtLop
-            // 
-            this.txtLop.Location = new System.Drawing.Point(173, 224);
-            this.txtLop.Name = "txtLop";
-            this.txtLop.Size = new System.Drawing.Size(292, 22);
-            this.txtLop.TabIndex = 13;
-            // 
-            // radNam
-            // 
-            this.radNam.AutoSize = true;
-            this.radNam.Location = new System.Drawing.Point(173, 342);
-            this.radNam.Name = "radNam";
-            this.radNam.Size = new System.Drawing.Size(58, 21);
-            this.radNam.TabIndex = 14;
-            this.radNam.TabStop = true;
-            this.radNam.Text = "Nam";
-            this.radNam.UseVisualStyleBackColor = true;
-            // 
-            // radNu
-            // 
-            this.radNu.AutoSize = true;
-            this.radNu.Location = new System.Drawing.Point(251, 342);
-            this.radNu.Name = "radNu";
-            this.radNu.Size = new System.Drawing.Size(47, 21);
-            this.radNu.TabIndex = 15;
-            this.radNu.TabStop = true;
-            this.radNu.Text = "Nữ";
-            this.radNu.UseVisualStyleBackColor = true;
             // 
             // frmThemSinhVien
             // 

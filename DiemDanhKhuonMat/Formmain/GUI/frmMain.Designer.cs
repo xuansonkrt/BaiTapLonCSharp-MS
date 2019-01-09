@@ -78,8 +78,8 @@
             this.tìmKiếmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTK_MSV = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTK_HoTen = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuTK_NgaySinh = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTK_Lop = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTK_NgaySinh = new System.Windows.Forms.ToolStripMenuItem();
             this.thoatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -298,7 +298,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 40;
             this.dataGridView1.RowTemplate.Height = 30;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(863, 364);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -546,30 +546,30 @@
             // mnuTK_MSV
             // 
             this.mnuTK_MSV.Name = "mnuTK_MSV";
-            this.mnuTK_MSV.Size = new System.Drawing.Size(181, 26);
+            this.mnuTK_MSV.Size = new System.Drawing.Size(166, 26);
             this.mnuTK_MSV.Text = "Mã sinh viên";
             this.mnuTK_MSV.Click += new System.EventHandler(this.mnuTK_MSV_Click);
             // 
             // mnuTK_HoTen
             // 
             this.mnuTK_HoTen.Name = "mnuTK_HoTen";
-            this.mnuTK_HoTen.Size = new System.Drawing.Size(181, 26);
+            this.mnuTK_HoTen.Size = new System.Drawing.Size(166, 26);
             this.mnuTK_HoTen.Text = "Họ tên";
             this.mnuTK_HoTen.Click += new System.EventHandler(this.mnuTK_HoTen_Click);
-            // 
-            // mnuTK_NgaySinh
-            // 
-            this.mnuTK_NgaySinh.Name = "mnuTK_NgaySinh";
-            this.mnuTK_NgaySinh.Size = new System.Drawing.Size(181, 26);
-            this.mnuTK_NgaySinh.Text = "Ngày sinh";
-            this.mnuTK_NgaySinh.Click += new System.EventHandler(this.mnuTK_NgaySinh_Click);
             // 
             // mnuTK_Lop
             // 
             this.mnuTK_Lop.Name = "mnuTK_Lop";
-            this.mnuTK_Lop.Size = new System.Drawing.Size(181, 26);
+            this.mnuTK_Lop.Size = new System.Drawing.Size(166, 26);
             this.mnuTK_Lop.Text = "Lớp";
             this.mnuTK_Lop.Click += new System.EventHandler(this.mnuTK_Lop_Click);
+            // 
+            // mnuTK_NgaySinh
+            // 
+            this.mnuTK_NgaySinh.Name = "mnuTK_NgaySinh";
+            this.mnuTK_NgaySinh.Size = new System.Drawing.Size(166, 26);
+            this.mnuTK_NgaySinh.Text = "Ngày sinh";
+            this.mnuTK_NgaySinh.Click += new System.EventHandler(this.mnuTK_NgaySinh_Click);
             // 
             // thoatToolStripMenuItem
             // 

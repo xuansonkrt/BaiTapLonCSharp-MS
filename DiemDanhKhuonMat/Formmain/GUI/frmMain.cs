@@ -93,6 +93,7 @@ namespace Formmain
             {                
                 dataGridView1.DataSource = getTable(theNode.Text, 2); //cn.getTable(sql);
                 color();
+                convertDate();
             }
             else
             {
@@ -100,6 +101,8 @@ namespace Formmain
                 {                   
                     dataGridView1.DataSource = getTable(theNode.Text,1);//cn.getTable(sql);
                     color();
+                    convertDate();
+
                 }
                 else
                 {
@@ -237,7 +240,9 @@ namespace Formmain
 
                         cmd.Parameters.Add("@ma", SqlDbType.Char).Value = frm.txtMaSV.Text;
                         cmd.Parameters.Add("@hoten", SqlDbType.NVarChar).Value = frm.txtHoTen.Text;
-                        cmd.Parameters.Add("@ngay ", SqlDbType.Date).Value = Convert.ToDateTime(frm.txtNgaySinh.Text, new CultureInfo("vi-VN")).Date;
+                        //   cmd.Parameters.Add("@ngay ", SqlDbType.Date).Value = Convert.ToDateTime(frm.txtNgaySinh.Text, new CultureInfo("vi-VN")).Date;
+                        cmd.Parameters.Add("@ngay ", SqlDbType.Date).Value = frm.getDate();
+
                         cmd.Parameters.Add("@gt", SqlDbType.NVarChar).Value = frm.radNam.Checked == true ? "Nam" : "Nữ";
                         cmd.Parameters.Add("@malop", SqlDbType.NVarChar).Value = tb.Rows[0]["MaLop"];
                         cmd.Parameters.Add("@image", SqlDbType.Image).Value = pic;
@@ -729,7 +734,23 @@ namespace Formmain
                 }
             }
         }
+        private void convertDate()
+        {
+            DateTime date;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                /*if (Convert.ToInt32(row.Cells[5].Value) == 0)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Green;
+                }*/
 
+
+
+
+                //date = Convert.ToDateTime(row.Cells[3].Value.ToString(), new CultureInfo("vi-VN")).Date;
+               // row.Cells[3].Value = date.ToString();
+            }
+        }
         private void xóaSinhViênToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             TreeNode theNode = TvDanhSachLop.SelectedNode;

@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Formmain.GUI;
 using System.Data.SqlClient;
 using System.IO;
+using System.Globalization;
 
 namespace Formmain.GUI
 {
@@ -31,6 +32,8 @@ namespace Formmain.GUI
         int stt = 1;
         DsDevice[] multiCam;
         string TenLop;
+        int test;
+
         public frmThemSinhVien(string TenLop)
         {
             InitializeComponent();
@@ -105,6 +108,7 @@ namespace Formmain.GUI
 
 
         }
+
         public void DetectFaces_pic()
         {
             picProcess = true;
@@ -167,10 +171,19 @@ namespace Formmain.GUI
                 txtMaSV.Focus();
             }
         }
-        private void btnXacnhansv_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
+        //private void btnXacnhansv_Click(object sender, EventArgs e)
+        //{
+        //    //check dữ liệu vào
+
             
+        //    DialogResult = DialogResult.OK;
+            
+        //}
+        public DateTime getDate()
+        {
+            DateTime date;
+            date=Convert.ToDateTime(txtNgaySinh.Text, new CultureInfo("vi-VN"));
+            return Convert.ToDateTime(date.Date, new CultureInfo("en-US")).Date;
         }
         public void clear()
         {
@@ -282,9 +295,93 @@ namespace Formmain.GUI
         {
             // kiểm tra dữ liệu nhập vào
             // ổn => OK
+            //Kiểm tra ảnh
+            if(imgTrain.Image==null)
+            {
+                MessageBox.Show("Bạn chưa chụp ảnh.", "Thông báo");
+                return;
+            }
+            //Kiểm tra mã sinh viên
+            if (txtMaSV.Text.Trim().Length ==0)
+            {
+                MessageBox.Show("Bạn chưa nhập mã sinh viên.", "Thông báo");
+                ActiveControl = txtMaSV;
+                return;
+            }
 
-            DialogResult = DialogResult.OK;
-        
+            if (txtMaSV.Text.Trim().Length!=8)
+            {
+                MessageBox.Show("Mã sinh viên gồm 8 chữ số.", "Thông báo");
+                ActiveControl = txtMaSV;
+                return;
+            }
+            else
+            {
+                int check;
+                char[] arr = txtMaSV.Text.Trim().ToCharArray();
+                for (int i = 0; i < 8; i++)
+                {
+                    check = Convert.ToInt16(arr[i]); //048 057 mã ascii cua ky tu
+                    if (check >= 048 && check <= 057)
+                        continue;
+                    else
+                    {
+                        MessageBox.Show("Mã sinh viên gồm 8 chữ số.", "Thông báo");
+                        ActiveControl = txtMaSV;
+                        return;
+                    }
+                }
+            }
+            //Kiểm tra họ tên
+            if(txtHoTen.Text.Trim().Length==0)
+            {
+                MessageBox.Show("Bạn chưa nhập họ tên.", "Thông báo");
+                ActiveControl = txtHoTen;
+                return;
+            }
+            char[] arrName= txtHoTen.Text.Trim().ToCharArray();
+            int test;
+            for (int i = 0; i < arrName.Length; i++)
+            {
+
+                test = Convert.ToInt16(arrName[i]); //048 057 mã ascii cua ky tu
+                if ((test>=033&&test<=064)||(test >= 091&& test <= 096)||(test >= 123&&test<=255)||test<032)
+                {
+                    MessageBox.Show("Họ tên chỉ gồm các chữ cái.", "Thông báo");
+                    ActiveControl = txtHoTen;
+                    return;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            
+
+            //Kiểm tra ngày sinh    
+            if (txtNgaySinh.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Bạn chưa nhập ngày sinh.", "Thông báo");
+                ActiveControl = txtNgaySinh;
+                return;
+            }
+            try
+            {
+                getDate();
+                DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Định dạng ngày không đúng.", "Thông báo");
+                ActiveControl = txtNgaySinh;
+            }
+            //Kiểm tra giới tính
+            if (radNam.Checked == false && radNu.Checked == false)
+            {
+                MessageBox.Show("Bạn phải chọn giới tính.", "Thông báo");
+                return;
+            }
+
         }
        
 
@@ -311,5 +408,6 @@ namespace Formmain.GUI
             radNam.Checked = false;
             radNu.Checked = false;
         }
+        
     }
 }
